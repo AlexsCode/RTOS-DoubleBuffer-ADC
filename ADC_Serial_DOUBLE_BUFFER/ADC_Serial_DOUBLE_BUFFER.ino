@@ -103,9 +103,9 @@ void IRAM_ATTR onTimer()
     {
       index = 0;
       swap_buffer(); //swaps between primary and secondary buffers
+      vTaskNotifyGiveFromISR(processing_task, &task_woken);
     }
 
-    vTaskNotifyGiveFromISR(processing_task, &task_woken);
   }
 
   if (task_woken)
